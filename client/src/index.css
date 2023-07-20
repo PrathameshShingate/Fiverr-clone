@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: white;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(173, 173, 173);
+}
+
+.carousel-prev,
+.carousel-next {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(237, 236, 236);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-initialized {
+  position: initial !important;
+  padding-left: 32px !important;
+}
+
+.carousel-prev {
+  left: 6px;
+}
+
+.carousel-next {
+  right: 6px;
+}
+
+.project-card {
+  box-shadow: 0 0.14px 2.29266px rgba(0, 0, 0, 0.032),
+    0 0.37px 4.42626px rgba(0, 0, 0, 0.048), 0 3px 7px rgba(0, 0, 0, 0.09);
+}
+
+.messages {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+
+.messages .title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.messages button {
+  background-color: #1dbf73;
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.messages table {
+  width: 100%;
+}
+
+.messages table tr {
+  height: 80px;
+  border-top: 1px solid lightgray;
+}
+
+.messages table td {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.messages table tr:first-child {
+  border: 0px;
+}
+
+.messages table th {
+  text-align: left;
+}
+
+.messages table button {
+  background-color: #1dbf73;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.messages .active {
+  background-color: #1dbf730f;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+}
+
+.message .container {
+  width: 1200px;
+  margin: 50px;
+}
+
+.message .messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  overflow: scroll;
+  width: 100%;
+}
+
+.message .item {
+  display: flex;
+  gap: 20px;
+  max-width: 600px;
+  font-size: 18px;
+}
+
+.message .owner {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+}
+
+.message .owner p {
+  max-width: 500px;
+  border-radius: 20px 0px 20px 20px;
+  background-color: #1dbf73;
+  color: white;
+}
+
+.message img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.message p {
+  max-width: 500px;
+  padding: 20px;
+  background-color: rgb(244, 241, 241);
+  border-radius: 0px 20px 20px 20px;
+  color: gray;
+  font-weight: 500;
+}
