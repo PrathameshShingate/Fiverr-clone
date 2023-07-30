@@ -86,7 +86,7 @@ function Seller() {
               <span className="font-bold text-md">{userInfo.fullName}</span>
             </div>
           </div>
-          <div className="border-t py-5 text-center">
+          <div className="border-t text-[#404145] py-5 text-base text-center">
             <p>{userInfo.description}</p>
           </div>
         </div>
@@ -95,32 +95,38 @@ function Seller() {
       <div className="w-full">
         <div className="grid grid-cols-2 gap-10 w-full h-full">
           <Link to="gigs">
-            <div className="shadow-md h-max p-10 flex flex-col gap-2 cursor-pointer hover:shadow-xl transition-all duration-300">
-              <h2 className="text-xl">Total Gigs</h2>
+            <div className="shadow-md h-full p-10 flex flex-col gap-2 cursor-pointer hover:shadow-xl transition-all duration-300">
+              <h2 className="text-xl font-medium text-[#62646a]">Total Gigs</h2>
               <h3 className="text-[#1DBF73] text-3xl font-extrabold">
                 {data.gigs.length}
               </h3>
             </div>
           </Link>
           <Link to="/buyer/orders" onClick={handleModeSwitch}>
-            <div className="shadow-md h-max p-10 flex flex-col gap-2 cursor-pointer hover:shadow-xl transition-all duration-300">
-              <h2 className="text-xl">Total Orders</h2>
+            <div className="shadow-md h-full p-10 flex flex-col gap-2 cursor-pointer hover:shadow-xl transition-all duration-300">
+              <h2 className="text-xl font-medium text-[#62646a]">
+                Total Orders
+              </h2>
               <h3 className="text-[#1DBF73] text-3xl font-extrabold">
                 {data.orders.length}
               </h3>
             </div>
           </Link>
           <Link to="orders/messages">
-            <div className="shadow-md h-max p-10 flex flex-col gap-2 cursor-pointer hover:shadow-xl transition-all duration-300">
-              <h2 className="text-xl">Seller Conversations</h2>
+            <div className="shadow-md h-full p-10 flex flex-col gap-2 cursor-pointer hover:shadow-xl transition-all duration-300">
+              <h2 className="text-xl font-medium text-[#62646a]">
+                Seller Conversations
+              </h2>
               <h3 className="text-[#1DBF73] text-3xl font-extrabold">
                 {data.sellerConversations.length}
               </h3>
             </div>
           </Link>
           <Link to="/buyer/orders/messages" onClick={handleModeSwitch}>
-            <div className="shadow-md h-max p-10 flex flex-col gap-2 cursor-pointer hover:shadow-xl transition-all duration-300">
-              <h2 className="text-xl">Buyer Conversations</h2>
+            <div className="shadow-md h-full p-10 flex flex-col gap-2 cursor-pointer hover:shadow-xl transition-all duration-300">
+              <h2 className="text-xl font-medium text-[#62646a]">
+                Buyer Conversations
+              </h2>
               <h3 className="text-[#1DBF73] text-3xl font-extrabold">
                 {data.buyerConversations.length}
               </h3>

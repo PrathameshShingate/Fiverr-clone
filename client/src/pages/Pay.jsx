@@ -47,6 +47,9 @@ const Pay = () => {
 
   return (
     <div className="mt-36 max-w-[1440px] mx-auto px-8">
+      <h2 className="text-center mx-auto pt-4 pb-10 text-[#404145] font-semibold text-3xl">
+        Complete payment to purchase this gig
+      </h2>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />

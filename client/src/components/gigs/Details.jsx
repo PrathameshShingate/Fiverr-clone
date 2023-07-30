@@ -182,7 +182,7 @@ const Details = ({ gigData }) => {
                       Math.round(gigData.totalStars / gigData.starNumber)}
                   </span>
                 </div>
-                <button className="bg-white rounded-md border-[1px] border-gray p-2.5">
+                <button className="bg-white rounded-md border-[1px] border-gray p-2.5 hover:bg-[#62646a] hover:text-white  transition-all duration-300">
                   Contact Me
                 </button>
               </div>

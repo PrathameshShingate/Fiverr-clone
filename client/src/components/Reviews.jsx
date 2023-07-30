@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ModalContext } from "../context/ModalContext";
+import { toast } from "react-toastify";
 
 const Reviews = () => {
   const { gigId } = useParams();
@@ -15,6 +16,12 @@ const Reviews = () => {
   const {
     state: { userOrders },
   } = useContext(ModalContext);
+
+  const addReviewErrorNotification = () => {
+    toast.error("You have already shared your review for this Gig!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const checkIsGigOrdered = () => {
     const data = userOrders.find((order) => {
@@ -37,23 +44,27 @@ const Reviews = () => {
   });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    await axios.post(
-      `${REVIEW_ROUTES}/`,
-      {
-        gigId,
-        desc: review,
-        star: stars,
-      },
-      {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${cookies.jwt}`,
+    try {
+      e.preventDefault();
+      await axios.post(
+        `${REVIEW_ROUTES}/`,
+        {
+          gigId,
+          desc: review,
+          star: stars,
         },
-      }
-    );
-    refetch();
-    setReview("");
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${cookies.jwt}`,
+          },
+        }
+      );
+      refetch();
+      setReview("");
+    } catch (err) {
+      addReviewErrorNotification();
+    }
   };
 
   return (

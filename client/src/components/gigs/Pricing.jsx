@@ -1,8 +1,14 @@
 import { useContext, useEffect } from "react";
 import { ModalContext } from "../../context/ModalContext";
 import { useParams, Link } from "react-router-dom";
+import { GET_SINGLE_CONVERSATION } from "../../utils/constants";
+import axios from "axios";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Pricing = ({ gigData }) => {
+  const [cookies, removeCookie] = useCookies();
+  const navigate = useNavigate();
   const {
     state: { userInfo, userOrders },
   } = useContext(ModalContext);
@@ -19,6 +25,41 @@ const Pricing = ({ gigData }) => {
   useEffect(() => {
     checkIsGigOrdered();
   }, []);
+
+  const handleChats = async (sellerId) => {
+    try {
+      const conversationExists = await axios.get(
+        `${GET_SINGLE_CONVERSATION}/${sellerId + userInfo._id}`,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${cookies.jwt}`,
+          },
+        }
+      );
+
+      if (conversationExists) {
+        navigate(`/buyer/orders/message/${conversationExists.data.id}`);
+        return;
+      }
+
+      const res = await axios.post(
+        CONVERSATION_ROUTES,
+        {
+          to: sellerId,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${cookies.jwt}`,
+          },
+        }
+      );
+      navigate(`/buyer/orders/message/${res.data.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -116,17 +157,11 @@ const Pricing = ({ gigData }) => {
           </div>
           {gigData.userId !== userInfo._id && (
             <div className="flex items-center justify-center mt-5">
-              <button className="flex justify-center gap-4 items-center w-5/6 py-1 border border-[#74767e] px-5 text-[#6c6d75] transition-all duration-300 text-lg rounded font-bold">
+              <button
+                onClick={() => handleChats(gigData.userId)}
+                className="flex justify-center gap-4 items-center w-5/6 py-1 border border-[#74767e] px-5 text-[#6c6d75] transition-all duration-300 text-lg rounded font-semibold hover:bg-[#62646a] hover:text-white"
+              >
                 Contact Me
-                <svg
-                  width="14"
-                  height="9"
-                  viewBox="0 0 14 9"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="#74767e"
-                >
-                  <path d="M0.190662 1.2721L0.809349 0.653381C0.955787 0.506943 1.19322 0.506943 1.33969 0.653381L7.00001 6.30022L12.6603 0.653381C12.8068 0.506944 13.0442 0.506944 13.1907 0.653381L13.8094 1.2721C13.9558 1.41854 13.9558 1.65597 13.8094 1.80244L7.26519 8.34663C7.11875 8.49307 6.88132 8.49307 6.73485 8.34663L0.190662 1.80244C0.0441933 1.65597 0.0441933 1.41854 0.190662 1.2721Z"></path>
-                </svg>
               </button>
             </div>
           )}

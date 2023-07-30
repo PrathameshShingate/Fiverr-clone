@@ -12,7 +12,7 @@ const Messages = () => {
 
   const {
     dispatch,
-    state: { isSeller, userInfo, userConversations },
+    state: { isSeller, userConversations },
   } = useContext(ModalContext);
 
   const queryClient = useQueryClient();
@@ -61,56 +61,79 @@ const Messages = () => {
   };
 
   return (
-    <div className="messages mt-36 max-w-[1440px] mx-auto px-8">
+    <div className="min-h-[80vh] mt-36 max-w-[1440px] mx-auto px-8">
       {userConversations ? (
-        <div className="container">
-          <div className="title">
-            <h1 className="text-2xl font-bold text-gray-800">Messages</h1>
-          </div>
-          <table>
-            <tbody>
-              <tr className="">
-                <th className="text-[#404145]">
-                  {isSeller ? "Buyer" : "Seller"}
-                </th>
-                <th className="text-[#404145]">Last Message</th>
-                <th className="text-[#404145]">Date</th>
-                <th className="text-[#404145]">Action</th>
-              </tr>
-              {userConversations.map((c) => (
-                <tr
-                  className={
-                    (isSeller ? !c.readBySeller : null) ||
-                    (!isSeller ? !c.readByBuyer : null)
-                      ? "active"
-                      : "bg-[#fffcfc]"
-                  }
-                  key={c.id}
-                >
-                  <td>{isSeller ? c.buyerId : c.sellerId}</td>
-                  <td>
-                    <Link
-                      to={`${
-                        isSeller ? "/seller/orders" : "/buyer/orders"
-                      }/message/${c.id}`}
-                      className="link"
-                    >
-                      {c?.lastMessage?.substring(0, 100)}...
-                    </Link>
-                  </td>
-                  <td>{moment(c.updatedAt).fromNow()}</td>
-                  <td>
-                    {((isSeller && !c.readBySeller) ||
-                      (!isSeller && !c.readByBuyer)) && (
-                      <button onClick={() => handleRead(c.id)}>
-                        Mark as Read
-                      </button>
-                    )}
-                  </td>
+        <div className="">
+          <h3 className="m-5 text-2xl font-semibold text-[#404145]">
+            All your Orders
+          </h3>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-sm text-[#62646a] uppercase bg-gray-50">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    {isSeller ? "Buyer" : "Seller"}
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Last message
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Date
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Action
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {userConversations.map((c) => {
+                  return (
+                    <tr
+                      className={
+                        (isSeller ? !c.readBySeller : null) ||
+                        (!isSeller ? !c.readByBuyer : null)
+                          ? "bg-[#24de870f] text-[#404145] text-base"
+                          : "text-base text-[#62646a]"
+                      }
+                      key={c.id}
+                    >
+                      <th scope="row" className="px-6 py-4 font-medium">
+                        {isSeller ? c.buyerId : c.sellerId}
+                      </th>
+                      <th scope="row" className="px-6 py-4 font-medium">
+                        <Link
+                          to={`${
+                            isSeller ? "/seller/orders" : "/buyer/orders"
+                          }/message/${c.id}`}
+                          className="link"
+                        >
+                          {c?.lastMessage?.substring(0, 100)}...
+                        </Link>
+                      </th>
+                      <td className="px-6 py-4 font-medium">
+                        {moment(c.updatedAt).fromNow()}
+                      </td>
+                      <td className="px-6 py-4">
+                        {(isSeller && !c.readBySeller) ||
+                        (!isSeller && !c.readByBuyer) ? (
+                          <button
+                            onClick={() => handleRead(c.id)}
+                            className="font-semibold text-[#1dbf73] hover:underline hover:cursor-pointer"
+                          >
+                            Mark as Read
+                          </button>
+                        ) : (
+                          <span className="text-[#62646a] font-medium">
+                            Read
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       ) : (
         "loading"

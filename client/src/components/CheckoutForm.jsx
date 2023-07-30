@@ -89,7 +89,7 @@ const CheckoutForm = () => {
     <form
       id="payment-form"
       onSubmit={handleSubmit}
-      className="w-[40%] mx-auto pb-6"
+      className="w-[40%] mx-auto pb-10"
     >
       <LinkAuthenticationElement
         id="link-authentication-element"

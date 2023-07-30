@@ -7,6 +7,7 @@ export const GIG_ROUTES = `${API_URL}/gigs`;
 export const ORDER_ROUTES = `${API_URL}/orders`;
 export const REVIEW_ROUTES = `${API_URL}/reviews`;
 export const CONVERSATION_ROUTES = `${API_URL}/conversations`;
+export const GET_SINGLE_CONVERSATION = `${CONVERSATION_ROUTES}/single`;
 export const MESSAGE_ROUTES = `${API_URL}/messages`;
 export const GET_SELLER_DASHBOARD_DATA = `${API_URL}/dashboard/seller`;
 

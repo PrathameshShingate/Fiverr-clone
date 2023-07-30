@@ -34,7 +34,7 @@ const Navbar = () => {
   };
 
   const signInNotification = () => {
-    toast.success("Login success!", {
+    toast.success("Login successful!", {
       position: toast.POSITION.TOP_RIGHT,
     });
   };
@@ -268,15 +268,23 @@ const Navbar = () => {
                 ) : (
                   <>
                     {isSeller && (
-                      <Link to="/seller/gigs/create">Create a gig</Link>
+                      <Link
+                        to="/seller/gigs/create"
+                        className="hover:text-[#1dbf73] transition-all duration-200"
+                      >
+                        Create a gig
+                      </Link>
                     )}
                     <span
                       onClick={handleOrdersNavigate}
-                      className="cursor-pointer text-[#1dbf73]"
+                      className="cursor-pointer hover:text-[#1dbf73] transition-all duration-200"
                     >
                       Orders
                     </span>
-                    <span onClick={handleModeSwitch} className="cursor-pointer">
+                    <span
+                      onClick={handleModeSwitch}
+                      className="cursor-pointer hover:text-[#1dbf73] transition-all duration-200"
+                    >
                       Switch to {isSeller ? "Buyer" : "Seller"}
                     </span>
                     <button

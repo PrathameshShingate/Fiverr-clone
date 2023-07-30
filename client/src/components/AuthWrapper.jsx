@@ -3,6 +3,7 @@ import { useContext, useRef, useEffect } from "react";
 import { ModalContext } from "../context/ModalContext";
 import { LOGIN_ROUTE, SIGNUP_ROUTE } from "../utils/constants";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AuthWrapper = ({ type }) => {
   const { dispatch } = useContext(ModalContext);
@@ -14,6 +15,12 @@ const AuthWrapper = ({ type }) => {
   useEffect(() => {
     emailRef.current?.focus();
   }, []);
+
+  const loginFailedNotification = () => {
+    toast.error("Incorrect username or password!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const handleSubmit = async () => {
     try {
@@ -42,6 +49,7 @@ const AuthWrapper = ({ type }) => {
         }
       }
     } catch (err) {
+      loginFailedNotification();
       console.log(err);
     }
   };

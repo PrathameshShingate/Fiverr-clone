@@ -64,10 +64,12 @@ const MyGigs = () => {
 
   return (
     <div className="min-h-[80vh] my-10 max-w-[1440px] mx-auto px-8 mt-36">
-      <h3 className="m-5 text-2xl font-semibold">All your Gigs</h3>
+      <h3 className="m-5 text-2xl font-semibold text-[#404145]">
+        All your Gigs
+      </h3>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table className="w-full text-sm text-left text-gray-500">
+          <thead className="text-sm text-[#62646a] uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Name
@@ -82,10 +84,10 @@ const MyGigs = () => {
                 Delivery Time
               </th>
               <th scope="col" className="px-6 py-3">
-                <span className="sr-only">Edit</span>
+                <span className="sr-only"></span>
               </th>
               <th scope="col" className="px-6 py-3">
-                <span className="sr-only">Delete</span>
+                <span className="sr-only"></span>
               </th>
             </tr>
           </thead>
@@ -93,18 +95,18 @@ const MyGigs = () => {
             {gigs.map((gig) => {
               return (
                 <tr
-                  className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  className="bg-white text-base  text-[#62646a]"
                   key={gig._id}
                 >
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="px-6 py-4 font-medium whitespace-nowrap"
                   >
                     {gig.title}
                   </th>
-                  <td className="px-6 py-4">{gig.category}</td>
-                  <td className="px-6 py-4">{gig.price}</td>
-                  <td className="px-6 py-4">{gig.deliveryTime}</td>
+                  <td className="px-6 py-4 font-medium">{gig.category}</td>
+                  <td className="px-6 py-4 font-medium">{gig.price}</td>
+                  <td className="px-6 py-4 font-medium">{gig.deliveryTime}</td>
                   <td className="">
                     <Link
                       to={`/seller/gigs/${gig._id}`}

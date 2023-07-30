@@ -23,35 +23,16 @@ const Profile = () => {
     description: "",
   });
 
-  const updateNotification = () => {
+  const updateProfileNotification = () => {
     toast.info("Profile set successfully!", {
       position: toast.POSITION.TOP_RIGHT,
     });
   };
 
   const errorNotification = () => {
-    // toast("Default Notification !");
-
-    // toast.success("Success Notification !", {
-    //   position: toast.POSITION.TOP_CENTER,
-    // });
-
     toast.error("Enter a unique username!", {
       position: toast.POSITION.TOP_RIGHT,
     });
-
-    // toast.warn("Warning Notification !", {
-    //   position: toast.POSITION.BOTTOM_LEFT,
-    // });
-
-    // toast.info("Info Notification !", {
-    //   position: toast.POSITION.BOTTOM_CENTER,
-    // });
-
-    // toast("Custom Style Notification with css class!", {
-    //   position: toast.POSITION.BOTTOM_RIGHT,
-    //   className: "foo-bar",
-    // });
   };
 
   useEffect(() => {
@@ -112,7 +93,7 @@ const Profile = () => {
       if (res.data.userNameError) {
         errorNotification();
       } else {
-        updateNotification();
+        updateProfileNotification();
         dispatch({
           type: "SET_USER",
           payload: {

@@ -42,7 +42,7 @@ const Edit = () => {
     setfeatures(clonedFeatures);
   };
 
-  const updateNotification = () => {
+  const updateGigNotification = () => {
     toast.info("Gig successfully edited!", {
       position: toast.POSITION.TOP_RIGHT,
     });
@@ -94,7 +94,7 @@ const Edit = () => {
         }
       );
       if (response.status === 200) {
-        updateNotification();
+        updateGigNotification();
         navigate("/seller/gigs");
       }
     }
